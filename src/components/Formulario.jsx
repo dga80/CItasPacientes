@@ -1,4 +1,7 @@
+import PropTypes from 'prop-types'
+
 import { useState } from "react"
+import Error from "./Error";
 const Formulario = ({pacientes, setPacientes}) => {
 
   const [nombre, setNombre]= useState('');
@@ -28,6 +31,13 @@ const Formulario = ({pacientes, setPacientes}) => {
     }
     setPacientes([...pacientes, objetoPaciente])
 
+    //resetear formulario
+    setNombre('')
+    setPropietario('')
+    setEmail('')
+    setFecha('')
+    setSintomas('')
+
   }
 
   return (
@@ -35,11 +45,7 @@ const Formulario = ({pacientes, setPacientes}) => {
       <h2 className="font-black text-3xl text-center">Seguimiento Pacientes</h2>
       <p className=" text-lg my-5">Añade pacientes y <span className="text-indigo-600 font-bold">Adminístralos</span></p>
       <form onSubmit={handleSubmit} className="bg-white shadow-md rounded-lg py-10 px-5 text-left">
-        {error && 
-        <div>
-          <p className="bg-red-800 text-white pl-5 py-3 rounded-md mb-3 text-center uppercase">Todos los campos son obligatorios</p>
-        </div>
-        }
+        {error && <Error mensaje='Obligatorio completar todos los campos'/>}
         <div className="mb-5">
           <label 
             htmlFor="mascota"
@@ -112,4 +118,8 @@ const Formulario = ({pacientes, setPacientes}) => {
   )
 }
 
+Formulario.propTypes={
+  pacientes:PropTypes.array,
+  setPacientes:PropTypes.func
+}
 export default Formulario
