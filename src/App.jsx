@@ -7,6 +7,8 @@ import ListadoPacientes from './components/ListadoPacientes'
 function App() {
 
   const [pacientes, setPacientes] = useState([]);
+  // eslint-disable-next-line no-unused-vars
+  const [paciente, setPaciente] = useState({})
 
   return (
     <div className='mx-auto mt-20'>
@@ -18,6 +20,7 @@ function App() {
         />
         <ListadoPacientes
           pacientes = {pacientes}
+          setPaciente = {setPaciente}
 
         />
       </div>

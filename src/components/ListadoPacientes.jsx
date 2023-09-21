@@ -2,7 +2,7 @@
 import Paciente from './Paciente';
 import PropTypes from 'prop-types';
 
-const ListadoPacientes = ({ pacientes }) => {
+const ListadoPacientes = ({ pacientes, setPaciente }) => {
   return (
     <div className="md:w-1/2 lg:w-3/5">
       {/* pacientes.length === 0 sería lo mismo que lo de abajo */}
@@ -15,7 +15,11 @@ const ListadoPacientes = ({ pacientes }) => {
 
           <div className="md:h-screen md:overflow-y-scroll">
             {pacientes.map((p) => (
-              <Paciente p={p} key={p.id} />
+              <Paciente 
+              p={p} 
+              key={p.id}
+              setPaciente={setPaciente} 
+               />
             ))}
           </div>
         </>
@@ -28,7 +32,10 @@ const ListadoPacientes = ({ pacientes }) => {
 
           <div className="md:h-screen md:overflow-y-scroll">
             {pacientes.map((p) => (
-              <Paciente p={p} key={p.id} />
+              <Paciente 
+              p={p} 
+              key={p.id} 
+              />
             ))}
           </div>
         </>
@@ -39,7 +46,7 @@ const ListadoPacientes = ({ pacientes }) => {
 
 ListadoPacientes.propTypes = {
   pacientes: PropTypes.array,
-  // Remove setPacientes if it's not used
+  setPaciente: PropTypes.func,
 };
 
 export default ListadoPacientes;
