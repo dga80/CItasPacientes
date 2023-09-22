@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types'
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Error from "./Error";
-const Formulario = ({pacientes, setPacientes}) => {
+const Formulario = ({pacientes, setPacientes, paciente}) => {
 
   const [nombre, setNombre]= useState('');
   const [propietario, setPropietario]= useState('');
@@ -11,6 +11,17 @@ const Formulario = ({pacientes, setPacientes}) => {
   const [sintomas, setSintomas]= useState('');
 
   const [error, setError]= useState(false)
+
+  useEffect(() => {
+    // comprobar si el array está vacío y setear los valores en los inputs del formulario
+    if (Object.keys(paciente).length > 0) {
+      setNombre(paciente.nombre)
+      setPropietario(paciente.propietario)
+      setEmail(paciente.email)
+      setFecha(paciente.fecha)
+      setSintomas(paciente.sintomas)
+    }
+  },[paciente])
 
   const generarId = () => {
     const random = Math.random().toString(36).substr(2);
@@ -118,7 +129,7 @@ const Formulario = ({pacientes, setPacientes}) => {
         <input
           type="submit"
           className="w-full py-2 uppercase bg-indigo-600 text-white rounded-md cursor-pointer hover:bg-indigo-700 transition-all"
-          value="Agregar Paciente"        
+          value= {paciente.id ? "editar paciente" : "agregar paciente"}   
         />
       </form>
     </div>
@@ -127,6 +138,7 @@ const Formulario = ({pacientes, setPacientes}) => {
 }
 
 Formulario.propTypes={
+  paciente:PropTypes.object,
   pacientes:PropTypes.array,
   setPacientes:PropTypes.func
 }

@@ -7,7 +7,6 @@ import ListadoPacientes from './components/ListadoPacientes'
 function App() {
 
   const [pacientes, setPacientes] = useState([]);
-  // eslint-disable-next-line no-unused-vars
   const [paciente, setPaciente] = useState({})
 
   return (
@@ -17,11 +16,12 @@ function App() {
         <Formulario
           pacientes = {pacientes}
           setPacientes = {setPacientes} 
+          paciente = {paciente}
         />
         <ListadoPacientes
           pacientes = {pacientes}
           setPaciente = {setPaciente}
-
+          paciente = {paciente}
         />
       </div>
     </div>

@@ -3,10 +3,12 @@ import Paciente from './Paciente';
 import PropTypes from 'prop-types';
 
 const ListadoPacientes = ({ pacientes, setPaciente }) => {
+
   return (
     <div className="md:w-1/2 lg:w-3/5">
       {/* pacientes.length === 0 sería lo mismo que lo de abajo */}
       {pacientes && pacientes.length ? (
+        
         <>
           <h2 className="font-black text-3xl text-center">Listado Pacientes</h2>
           <p className="text-lg my-5">
